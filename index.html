@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="appCoinage">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coinage</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="container" data-ng-controller="MainController">
+       <h1>Coinage</h1>
+        <form class="form" id="coinage" data-ng-submit="init()">
+            <div class="form-group">
+                <label for="amount">Enter monetary value for coin conversion. <small>Eg. 365</small></label>
+                <input type="text" id="amount" placeholder="Enter monetary value.">
+                <small>* Press 'Enter' key to calculate</small>
+            </div>
+        </form>
+        <div data-ng-cloak class="error" data-ng-show="error">
+            {{error}}
+        </div>
+        <table class="table" ng-hide="error">
+            <thead>
+                <tr>
+                    <th data-ng-click="doSort('coin')" title="Sort by Coin">Coin</th>
+                    <th data-ng-click="doSort('amount')" title="Sort by Amount">Amount</th>
+                </tr>
+            </thead>
+            <tbody data-ng-cloak>
+                <tr data-ng-repeat="c in coinsAmount | orderBy: sortBy:reverse">
+                    <td>{{c.coin}}</td>
+                    <td>{{c.amount}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="libs/angular.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/controllers/mainController.js"></script>
+
+</body>
+
+</html>
